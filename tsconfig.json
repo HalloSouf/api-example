@@ -38,5 +38,5 @@
     "esm": true,
     "experimentalSpecifierResolution": "node"
   },
-  "exclude": ["build/**"]
+  "exclude": ["build/**", "prisma/**"]
 }
