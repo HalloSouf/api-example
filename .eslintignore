@@ -1,0 +1,19 @@
+# Depdendencies
+node_modules/
+
+# Production
+build/
+.env
+.env.*
+!.env.example
+
+# Package manager
+pnpm-lock.yml
+package-lock.json
+yarn.lock
+
+# Miscellaneous
+.DS_Store
+.vscode/
+.fleet/
+.idea/

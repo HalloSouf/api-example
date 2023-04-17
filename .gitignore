@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Production
+build/
+.env
+
+# ATTENTION!!: When you are using this project for your own project, uncomment the keys folder. 
+# keys/
+
+# Miscellaneous
+.DS_Store
+.vscode/
+.idea/
+yarn-error.log
+package-lock.json
