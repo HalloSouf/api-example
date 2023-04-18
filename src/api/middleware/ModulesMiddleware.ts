@@ -6,7 +6,7 @@ import { json, urlencoded } from 'express';
 
 export default {
   register: ({ application, options }: HttpServer) => {
-    application.use(helmet);
+    application.use(helmet());
     application.use(json());
     application.use(urlencoded({ extended: false }));
     application.use(
