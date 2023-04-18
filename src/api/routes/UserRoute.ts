@@ -29,6 +29,11 @@ class UserRoute extends Route {
       ],
       this.controller.create.bind(this.controller)
     );
+    this.router.get(
+      '/:userId',
+      [GlobalMiddleware.getBearer, GlobalMiddleware.validateBearer],
+      this.controller.get.bind(this.controller)
+    );
   }
 }
 
