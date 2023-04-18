@@ -1,0 +1,32 @@
+name: Lint codebase
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  linting-code:
+    name: Run code linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git-repository
+        uses: actions/checkout@v2
+
+      - name: Set up NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.4.0
+
+      - name: Install NodeJS dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Linting code
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          prettier: true
