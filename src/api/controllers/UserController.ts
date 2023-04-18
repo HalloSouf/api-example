@@ -22,16 +22,22 @@ class UserController extends Controller {
     } catch (ex: unknown) {
       if (ex instanceof Error) {
         if (ex.message === 'UNKNOWN_USER') {
-          return res.status(404).json({ error: 'UNKNOWN_USER', message: 'Could not find user with specified ID.' });
+          return res
+            .status(404)
+            .json({ error: 'UNKNOWN_USER', message: 'Could not find user with specified ID.' });
         }
 
         if (ex.message === 'NO_ACCESS') {
-          return res.status(403).json({ error: 'NO_ACCESS', message: 'You do not have access to this resource.' });
+          return res
+            .status(403)
+            .json({ error: 'NO_ACCESS', message: 'You do not have access to this resource.' });
         }
       }
-      
+
       this.logger.error(ex);
-      return res.status(500).json({ error: 'UNKNONW_ERROR', message: 'Error while resolving your request.' });
+      return res
+        .status(500)
+        .json({ error: 'UNKNONW_ERROR', message: 'Error while resolving your request.' });
     }
   }
 
@@ -51,17 +57,24 @@ class UserController extends Controller {
       return res.json({ ...user });
     } catch (ex: unknown) {
       if (ex instanceof Prisma.PrismaClientKnownRequestError) {
-        if (ex.code  === 'P2002' && ex.meta?.target === 'users_email_key') {
-          return res.status(400).json({ error: 'DUPLICATE EMAIL', message: `Email "${email}" is already used.` });
+        if (ex.code === 'P2002' && ex.meta?.target === 'users_email_key') {
+          return res
+            .status(400)
+            .json({ error: 'DUPLICATE EMAIL', message: `Email "${email}" is already used.` });
         }
 
         if (ex.code === 'P2002' && ex.meta?.target === 'users_username_key') {
-          return res.status(400).json({ error: 'DUPLICATE USERNAME', message: `Username "${username}" is already used.` });
+          return res.status(400).json({
+            error: 'DUPLICATE USERNAME',
+            message: `Username "${username}" is already used.`
+          });
         }
       }
 
       this.logger.error(ex);
-      return res.status(500).json({ error: 'UNKNONW_ERROR', message: 'Error while resolving your request.' });
+      return res
+        .status(500)
+        .json({ error: 'UNKNONW_ERROR', message: 'Error while resolving your request.' });
     }
   }
 }

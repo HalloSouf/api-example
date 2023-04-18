@@ -5,7 +5,7 @@ class Service {
   /**
    * Prisma client instance
    */
-  protected get prisma(): IPrismaClient  {
+  protected get prisma(): IPrismaClient {
     return PrismaClient;
   }
 }

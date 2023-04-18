@@ -45,35 +45,35 @@ class AuthService {
     );
   }
 
-    /**
+  /**
    * Verify JWT token
    * @param token Token to verify
    */
-    public verifyToken(token: string): Promise<ICustomJwt | undefined> {
-      return new Promise(
-        (
-          promiseResolve: (value: ICustomJwt | undefined) => void,
-          reject: (reason?: VerifyErrors) => void
-        ) => {
-          jwtPkg.verify(
-            token,
-            readFileSync(resolve(config.keys.publicPath), {
-              encoding: 'utf-8'
-            }),
-            {
-              audience: config.jwt.audience,
-              issuer: config.jwt.issuer,
-              algorithms: ['RS256'],
-              complete: true
-            },
-            (error: VerifyErrors | null, payload: Jwt | undefined) => {
-              if (error) reject(error);
-              promiseResolve(payload as ICustomJwt);
-            }
-          );
-        }
-      );
-    }
+  public verifyToken(token: string): Promise<ICustomJwt | undefined> {
+    return new Promise(
+      (
+        promiseResolve: (value: ICustomJwt | undefined) => void,
+        reject: (reason?: VerifyErrors) => void
+      ) => {
+        jwtPkg.verify(
+          token,
+          readFileSync(resolve(config.keys.publicPath), {
+            encoding: 'utf-8'
+          }),
+          {
+            audience: config.jwt.audience,
+            issuer: config.jwt.issuer,
+            algorithms: ['RS256'],
+            complete: true
+          },
+          (error: VerifyErrors | null, payload: Jwt | undefined) => {
+            if (error) reject(error);
+            promiseResolve(payload as ICustomJwt);
+          }
+        );
+      }
+    );
+  }
 }
 
 export default AuthService;

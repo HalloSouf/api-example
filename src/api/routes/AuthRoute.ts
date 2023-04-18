@@ -18,6 +18,15 @@ class AuthRoute extends Route {
    */
   private init(): void {
     this.router.post(
+      '/refresh',
+      [
+        GlobalMiddleware.getBearer,
+        body('refresh').isLength({ min: 1 }),
+        GlobalMiddleware.validateBody
+      ],
+      this.controller.refresh.bind(this.controller)
+    );
+    this.router.post(
       '/signin',
       [
         body('username').isLength({ min: 1 }),

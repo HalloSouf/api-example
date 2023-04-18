@@ -33,7 +33,7 @@ declare global {
       auth?: {
         jwt?: ICustomJwt;
         bearer?: string;
-      }
+      };
     }
   }
 }
